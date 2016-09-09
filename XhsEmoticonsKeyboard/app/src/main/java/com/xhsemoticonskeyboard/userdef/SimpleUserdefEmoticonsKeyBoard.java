@@ -24,7 +24,7 @@ public class SimpleUserdefEmoticonsKeyBoard extends XhsEmoticonsKeyBoard {
 
     @Override
     protected View inflateFunc(){
-        return mInflater.inflate(R.layout.view_func_emoticon, null);
+        return mInflater.inflate(R.layout.view_func_emoticon_userdef, null);
     }
 
     @Override
@@ -42,6 +42,14 @@ public class SimpleUserdefEmoticonsKeyBoard extends XhsEmoticonsKeyBoard {
             mBtnFace.setImageResource(R.mipmap.chatting_emoticons);
         }
         checkVoice();
+    }
+
+    @Override
+    public void OnSoftClose() {
+        super.OnSoftClose();
+        if (mLyKvml.getCurrentFuncKey() == FUNC_TYPE_APPPS) {
+            setFuncViewHeight(EmoticonsKeyboardUtils.dip2px(getContext(), APPS_HEIGHT));
+        }
     }
 
     @Override
